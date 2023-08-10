@@ -1,0 +1,37 @@
+/* Header.css */
+
+.header {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.logo_allgrow_labo {
+  padding: 15px 0;
+  width: 200px;
+  height: auto;
+  float: left;
+}
+
+.image_logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.header-title {
+  align-items: center;
+  margin-left: 450px;
+}
+
+.country-work {
+  align-items: center;
+  margin-left: 180px;
+}
