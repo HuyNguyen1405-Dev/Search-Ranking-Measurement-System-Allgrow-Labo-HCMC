@@ -28,10 +28,23 @@
 
 .header-title {
   align-items: center;
-  margin-left: 450px;
+  margin-left: 400px;
 }
 
 .country-work {
   align-items: center;
-  margin-left: 180px;
+  display: flex;
+  width: 100px;
+}
+
+.Japan_logo {
+  display: block;
+  width: 36px;
+  margin-left: 400px;
+}
+
+.VN_logo{
+  display: block;
+  width: 36px;
+  margin: 0 5px;
 }
