@@ -2,17 +2,15 @@
 import React from "react";
 import "./Content.css";
 import Form from '../Form/Form.js';
+import Results from "../Results/Results";
+
 
 const Content = () => {
 
   return (
     <>
       <Form />
-      <div className="container_results">
-        <div className="results">
-          <h1>g1</h1>
-        </div>
-      </div>
+      <Results />
     </>
   );
 };
