@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/form/save-data', [APIController::class, 'saveData']);
+Route::get('/getAPI', [APIController::class, 'get_data_search']);
+Route::post('/form/save-data', [APIController::class, 'formData']);

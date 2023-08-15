@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Form.css';
-import { postFormValue } from "../../services/axiosInstance";
+import { postFormValue, getDataFromBE } from "../../services/axiosInstance";
 import axios from 'axios';
 
 const Form = () => {
@@ -9,6 +9,11 @@ const Form = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [ valueSearch, setValueSearch ] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,24 +24,36 @@ const Form = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
-    try {
-      postFormValue({...formValues})
-    } catch (error) {
-      console.error(error);
+    console.log(formValues);
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      try {
+        postFormValue({...formValues})
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     postFormValue({...formValues})
-  //   }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // });
+  //fetch data
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/getDataSearch`);
+      setValueSearch(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(valueSearch);
+  
   const validate = (values) => {
     const errors = {};
+    const regex = /https?:\/\/.+/;
     if (!values.url_link) {
       errors.url_link = "Url link is required";
+    } else if (!regex.test(values.url_link)) {
+      errors.url_link = "This is not a valid url format!";
     }
     if (!values.keyword) {
       errors.keyword = "Keyword is required";
